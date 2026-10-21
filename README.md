@@ -82,14 +82,14 @@ The boundary is enforced in code and visible in the UI. Facts are fetched only f
 
 ## 6\. What did not work at first
 
-* The originally planned free LLM provider, GitHub Models (gpt-4o-mini), was fully retired by Microsoft on 30 July 2026, mid-project. Because the provider sits behind configuration, the switch to Groq required no code change.
+* The originally planned free LLM provider, GitHub Models (e.g. gpt-4o-mini), was fully retired by Microsoft on 30 July 2026, mid-project. Because the provider sits behind configuration, the switch to Groq required no code change.
 * The Azure Container Apps deployment was fully prepared but blocked by Azure's restriction on ACR Tasks for new subscriptions; the deployment moved to Render, keeping the free-tier requirement.
 * Early model runs occasionally returned valid JSON with zero use cases, or answers wrapped in markdown fences; each was rejected by validation, retried once with a corrective instruction, and the prompt was hardened.
 * Solstad's site blocks datacenter IPs with 403 even for browser identities; the Reader service rung was added.
 
 ## 7\. Saved-output transparency
 
-`docs/saved\_outputs.json` contains five live analyses against the deployed application, one for each test company in the case: DOF Group ASA (930053112), Solstad Offshore ASA (945883294), Simon Møkster Shipping AS (987341947), Archer AS (934361156) and Eviny AS (880309102). All are genuine model output (`openai/gpt-oss-20b` via Groq) with real Brreg facts. Archer's and Eviny's registered homepages were retrieved live; DOF and Simon Møkster have no homepage registered, so the search fallback found and verified their own pages (dof.com/contact, mokster.no/career); Solstad's site blocks datacenter IPs, so its live page was fetched through the Reader service and verified. Repeat requests for the same orgnr are served from the SQLite cache without a new LLM call.
+`docs/saved_outputs.json` contains five live analyses against the deployed application, one for each test company in the case: DOF Group ASA (930053112), Solstad Offshore ASA (945883294), Simon Møkster Shipping AS (987341947), Archer AS (934361156) and Eviny AS (880309102). All are genuine model output (`openai/gpt-oss-20b` via Groq) with real Brreg facts. Archer's and Eviny's registered homepages were retrieved live; DOF and Simon Møkster have no homepage registered, so the search fallback found and verified their own pages (dof.com/contact, mokster.no/career); Solstad's site blocks datacenter IPs, so its live page was fetched through the Reader service and verified. Repeat requests for the same orgnr are served from the SQLite cache without a new LLM call.
 
 **Known gaps:** no evaluation harness for the suggestions yet, no multi-page crawler, and no production-grade identity or monitoring. With more time, I would add a prompt-evaluation set spanning all five test companies and a broader sample of Norwegian businesses, durable cloud storage, and operational telemetry.
 
