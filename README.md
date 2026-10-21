@@ -34,7 +34,7 @@ A complement with design-decision justifications (choice, reasoning, rejected al
 
 Browser / API -> FastAPI -> Brreg facts + unstructured source (registered homepage, or a search-verified company site fetched via the Reader service when blocked) -> LLM grounded in fact IDs -> schema and source validation -> SQLite cache. GET `/analysis/{orgnr}` returns the saved result without another LLM call (see Figure 1 in `docs/architecture.png`).
 
-!\[Figure 1: Architecture of the AI Opportunity Analyser](docs/architecture.png)
+![Figure 1: Architecture of the AI Opportunity Analyser](docs/architecture.png)
 
 *Figure 1: Architecture of the AI Opportunity Analyser.*
 
