@@ -1,0 +1,30 @@
+# Infrastructure as code for Render.com (Blueprint spec).
+# Deploy: Render Dashboard -> New + -> Blueprint -> select this repository.
+# Secrets (OPENAI_API_KEY) are added as sync:false so they are never stored in Git.
+services:
+  - type: web
+    name: bdo-ai-analyser
+    runtime: docker
+    plan: free
+    region: frankfurt
+    healthCheckPath: /health
+    envVars:
+      - key: LLM_PROVIDER
+        value: openai
+      - key: OPENAI_BASE_URL
+        value: https://api.groq.com/openai/v1
+      - key: OPENAI_MODEL
+        value: openai/gpt-oss-20b
+      - key: OPENAI_API_KEY
+        sync: false          # set in the Render dashboard; secret, not in Git
+      - key: ENVIRONMENT
+        value: production
+      - key: RATE_LIMIT_PER_HOUR
+        value: "10"
+      - key: SEARCH_PROVIDER
+        value: none            # "none" | "serper" - web-search fallback when Brreg has no homepage
+      - key: SEARCH_API_KEY
+        sync: false            # set in the Render dashboard; secret, not in Git
+      - key: SEARCH_MAX_RESULTS
+        value: "3"
+
