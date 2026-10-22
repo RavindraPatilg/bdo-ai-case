@@ -18,7 +18,7 @@ bdo-ai-case/
 └── requirements.txt, pytest.ini, .env.example, .gitignore
 ```
 
-A complement with design-decision justifications (choice, reasoning, rejected alternative), the project journey, and the agentic next step is in `docs/design\_notes.docx`.
+A complement with design-decision justifications (choice, reasoning, rejected alternative), the project journey, and the agentic next step is in `docs/design_notes.docx`.
 
 ## 1\. Deployment and testing
 
@@ -53,7 +53,7 @@ Browser / API -> FastAPI -> Brreg facts + unstructured source (registered homepa
 |Choice|Reason / deliberately not built|
 |-|-|
 |FastAPI + Pydantic|Provides API and simple UI; strict output validation. Streamlit avoided because API is required.|
-|Render.com hosting|Git-connected Docker deploy, free tier, EU region. Azure was attempted first: the employer Azure tenant did not permit resource creation, and a new personal subscription restricts Docker image builds (ACR Tasks) - full chain in `infra/README\_deployment.md`.|
+|Render.com hosting|Git-connected Docker deploy, free tier, EU region. Azure was attempted first: the employer Azure tenant did not permit resource creation, and a new personal subscription restricts Docker image builds (ACR Tasks) - full chain in `infra/README_deployment.md`.|
 |Groq-hosted GPT-OSS-20B|Free tier, OpenAI-compatible; the provider sits behind one configuration layer, so it can be swapped without code changes.|
 |SQLite|Simple persistent cache for case scope. No managed database needed for demo.|
 |Single webpage fetch|Full crawler, rankings, email drafts and contact suggestions are explicitly out of scope.|
