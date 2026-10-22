@@ -95,6 +95,7 @@ async def _fetch_html(client: httpx.AsyncClient, url: str) -> tuple[str, str]:
                                               "Accept-Language": "en"}) as resp:
                 if resp.status_code == 403:
                     last_error = "Page blocked the request (403)"
+                    logger.info("page_blocked_403 url=%s", url)
                     continue
                 resp.raise_for_status()
                 async for chunk in resp.aiter_bytes():
